@@ -1,0 +1,26 @@
+def encode(st):
+    lst=st.split(' ')
+    l_max = max([len(x) for x in lst])
+    arr=[[0]*(l_max)]*len(lst)
+    for x in lst:
+        if len(x)==l_max:
+            l_max_word = x
+    for l in range(0,len(lst)):
+        if(len(lst[l])<l_max):
+            lst[l] = lst[l]+'0'*(l_max - len(lst[l]))
+    for x in range(0,len(arr)):
+        store = list(lst[x])
+        arr[x]=store
+    for x in arr:
+        for y in range(0,len(x)):
+            if(x[y]=='0'):
+                _sum = ord(l_max_word[y-1]) + ord(l_max_word[y] )
+                x[y]=str(_sum)
+    code=''
+    for y in range(0,len(arr[0])):
+        _msg=''
+        for x in range(0,len(arr)):
+            _msg=  _msg+str(arr[x][y])
+        #print(_msg)
+        code = code+_msg
+    return code
